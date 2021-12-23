@@ -1,7 +1,10 @@
 
 ### Setup Aplikasi
+```
 composer update / composer install
 ```
+
+
 Konfigurasi file .env
 ```
 DB_CONNECTION=mysql
