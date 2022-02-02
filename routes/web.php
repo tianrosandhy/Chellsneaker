@@ -90,8 +90,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/laporan/pdf/{awal}/{akhir}', [LaporanController::class, 'exportPDF'])->name('laporan.export_pdf');
 
         Route::get('/regresi', [RegresiController::class, 'index'])->name('regresi.index');
-        Route::get('/regresi/data/{awal}/{akhir}', [RegresiController::class, 'data'])->name('regresi.data');
-        Route::get('/regresi/chart/{awal}/{akhir}', [RegresiController::class, 'chart'])->name('regresi.chart');
+        Route::get('/regresi/data/{awal}/{akhir}/{produk_id?}', [RegresiController::class, 'data'])->name('regresi.data');
+        Route::get('/regresi/chart/{awal}/{akhir}/{produk_id?}', [RegresiController::class, 'chart'])->name('regresi.chart');
         
 
         Route::get('/user/data', [UserController::class, 'data'])->name('user.data');

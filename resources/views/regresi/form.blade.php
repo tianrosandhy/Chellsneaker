@@ -5,9 +5,21 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Periode Laporan</h4>
+                    <h4 class="modal-title">Filter Report</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-lg-offset-1 control-label">Nama Produk</label>
+                        <div class="col-lg-6">
+                            <select name="produk_id" class="form-control select2">
+                                <option value="">- Semua Produk -</option>
+                                @foreach($list_produk as $lprod)
+                                    <option {{ $lprod->id_produk == ($produk->id_produk ?? 0) ? 'selected' : '' }} value="{{ $lprod->id_produk }}">{{ $lprod->nama_produk }} ({{ $lprod->kode_produk }})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label for="tanggal_awal" class="col-lg-2 col-lg-offset-1 control-label">Tanggal Awal</label>
                         <div class="col-lg-6">

@@ -53,6 +53,7 @@ class ProdukController extends Controller
                 <div class="btn-group">
                     <button type="button" onclick="editForm(`'. route('produk.update', $produk->id_produk) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
                     <button type="button" onclick="deleteData(`'. route('produk.destroy', $produk->id_produk) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                    <a href="'.route('regresi.index', ['produk_id' => $produk->id_produk]).'" class="btn btn-xs btn-primary" title="Lihat Report Regresi"><i class="fa fa-eye"></i></a>
                 </div>
                 ';
             })

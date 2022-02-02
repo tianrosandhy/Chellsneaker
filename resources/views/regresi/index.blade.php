@@ -2,6 +2,9 @@
 
 @section('title')
     Data Penjualan
+    @if(isset($produk->nama_produk))
+    <strong>{{ $produk->nama_produk }} ({{ $produk->kode_produk }})</strong>
+    @endif
 @endsection
 
 @push('css')
@@ -10,7 +13,7 @@
 
 @section('breadcrumb')
     @parent
-    <li class="active">Data Penjualan</li>
+    <li class="active">Laporan Regresi Kesimpulan</li>
 @endsection
 
 @section('content')
@@ -18,7 +21,7 @@
     <div class="col-lg-12">
         <div class="box">
             <div class="box-header with-border">
-                <button onclick="updatePeriode()" class="btn btn-info btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Ubah Periode</button>
+                <button onclick="updatePeriode()" class="btn btn-info btn-flat"><i class="fa fa-plus-circle"></i> Filter Report</button>
             </div>
             <div class="box-body chart-container">
                 Please Wait ...
@@ -30,6 +33,7 @@
                         <th>Tanggal</th>
                         <th>Penjualan</th>
                         <th>Forecasting</th>
+                        <th>Error Margin</th>
                     </thead>
                 </table>
             </div>
@@ -50,13 +54,14 @@
             processing: true,
             autoWidth: false,
             ajax: {
-                url: '{{ route('regresi.data', [$tanggalAwal, $tanggalAkhir]) }}',
+                url: '{{ route('regresi.data', [$tanggalAwal, $tanggalAkhir, $produk_id]) }}',
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'tanggal'},
                 {data: 'penjualan'},
                 {data: 'forecasting'},
+                {data: 'error_margin'},
             ],
             dom: 'Brt',
             bSort: false,
@@ -74,7 +79,7 @@
 
     function loadChart(){
         $.ajax({
-            url : '{{ route('regresi.chart', [$tanggalAwal, $tanggalAkhir]) }}',
+            url : '{{ route('regresi.chart', [$tanggalAwal, $tanggalAkhir, $produk_id]) }}',
             dataType : 'html',
             success : function(resp){
                 $(".chart-container").html(resp);
